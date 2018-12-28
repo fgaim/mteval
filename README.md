@@ -19,9 +19,11 @@ Install
 
 `MTEval` depends on below libraries:
 * `Boost 1.48` or later
+    $ sudo apt-get install libboost-all-dev
 
 And uses below toolkit to build libraries and executalbes:
 * `CMake 3.1.0` or later
+    $ sudo apt-get install cmake
 
 First, we make a root directory of the build tree:
 
