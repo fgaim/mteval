@@ -43,6 +43,16 @@ And optionally you can run unit tests:
 All executables (see next section) are stored in the `build/bin` directory.
 
 
+Add to local path (optional)
+----------------------------
+
+To execute `mteval` commands from anywhere (without pointing to the build directory) 
+create symbolic link of the compiled binaries in the local `bin` folder:
+
+    $ cd /usr/local/bin
+    $ sudo ln -s /path/to/mteval/build/bin/mteval-* .
+
+
 Usage
 -----
 
@@ -77,13 +87,13 @@ For example, we use a small example set described below:
     a b c d e
     a b x d e
 
-Then, we type below example commands and get results:
+Then, we type below example commands and get results
+(do `cd /path/to/mteval/build/bin` first if `mteval` has not added to bin path):
 
-    $ cd /path/to/mteval
-    $ build/bin/mteval-corpus -e BLEU RIBES -r data/ref -h data/hyp1
+    $ mteval-corpus -e BLEU RIBES -r data/ref -h data/hyp1
     BLEU=0.666113	RIBES=0.969124
 
-    $ build/bin/mteval-sentence -e BLEU RIBES -r data/ref -h data/hyp1
+    $ mteval-sentence -e BLEU RIBES -r data/ref -h data/hyp1
     BLEU=1.000000	RIBES=1.000000
     BLEU=0.759836	RIBES=0.955443
     BLEU=0.000000	RIBES=0.975310
@@ -97,10 +107,10 @@ Then, we type below example commands and get results:
 Some evaluation metrics have parameters (e.g. maximum n-gram, or smoothing for BLEU).
 You may set these parameters using `:param=value` notation:
 
-    $ build/bin/mteval-corpus -e BLEU:ngram=5:smooth=1 -r data/ref -h data/hyp1
+    $ mteval-corpus -e BLEU:ngram=5:smooth=1 -r data/ref -h data/hyp1
     BLEU=0.676009
 
-    $ build/bin/mteval-corpus -e BLEU:smooth=1 -r data/ref -h data/hyp1
+    $ mteval-corpus -e BLEU:smooth=1 -r data/ref -h data/hyp1
     BLEU=0.696471
 
 Omitted parameters are assumed as default value.
@@ -108,7 +118,7 @@ Omitted parameters are assumed as default value.
 If you need to obtain inner statistics of each evaluation metrics,
 you can use `--output-stats` option for `mteval-corpus` and `mteval-sentence`:
 
-    $ build/bin/mteval-corpus --output-stats -e BLEU -r data/ref -h data/hyp1 \
+    $ mteval-corpus --output-stats -e BLEU -r data/ref -h data/hyp1 \
       | tr '\t' '\n'
     BLEU=0.666113
     BLEU:len:hyp=20
